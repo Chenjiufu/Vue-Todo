@@ -4,41 +4,56 @@
       <h2>
         Todo
       </h2>
-      <input
-        @keyup.enter="push_list"
-        v-model="newTodo"
-      >
-      <br><br>
-      <input v-model="alldone" type="checkbox">
-      <span>全选|</span>
-      <span @click="changeV('all')">全部list</span>
-      <span @click="changeV('done')">已完成</span>
-      <span @click="changeV('plan')">未完成</span>
-    </section>
-    <ul>
-      <li
-        v-for="i in lists"
-        :class="{editing: i == editedTodo }"
-      >
-        <div class="viewtodo">
-          <input type="checkbox"
-                 v-model="i.m_checked"
-                 class="m_checkbox">
-          <span @dblclick="editTodo(i)">{{ i.title }}</span>
-          <span class="removetodo" @click=removetodo(i)>x</span>
-        </div>
+      <el-row :gutter="20">
+        <el-col :span="12" :offset="6">
+          <div class="grid-content bg-purple">
+            <input
+              @keyup.enter="push_list"
+              v-model="newTodo"
+              placeholder="请输入任务"
+            >
+          </div>
+        </el-col>
+      </el-row>
 
-        <div class="view">
-          <input class="edit"
-                 v-onfocus="i == editedTodo"
-                 v-model="i.title"
-                 @blur="doneEdit(i)"
-                 @keyup.enter="doneEdit(i)"
-                 @keyup.esc="cancelEdit(i)"
-          >
+      <br><br>
+      <el-checkbox v-model="alldone"></el-checkbox>
+      <el-lable>全选</el-lable>
+      <el-button @click="changeV('all')">全部任务</el-button>
+      <el-button @click="changeV('done')">已完成</el-button>
+      <el-button @click="changeV('plan')">未完成</el-button>
+    </section>
+    <el-row :gutter="20">
+      <el-col :span="12" :offset="6">
+        <div class="grid-content bg-purple">
+          <ul>
+            <li
+              v-for="i in lists"
+              :class="{editing: i == editedTodo }"
+            >
+              <div class="viewtodo">
+                <el-checkbox
+                  v-model="i.m_checked"
+                  class="m_checkbox">
+                </el-checkbox>
+                <span @dblclick="editTodo(i)">{{ i.title }}</span>
+                <i class="removetodo el-icon-close" @click=removetodo(i)></i>
+              </div>
+
+              <div class="view">
+                <input class="edit"
+                       v-onfocus="i == editedTodo"
+                       v-model="i.title"
+                       @blur="doneEdit(i)"
+                       @keyup.enter="doneEdit(i)"
+                       @keyup.esc="cancelEdit(i)"
+                >
+              </div>
+            </li>
+          </ul>
         </div>
-      </li>
-    </ul>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -126,8 +141,6 @@
         return filters[this.selectedV](this.todoList)
       }
     }
-
-
   }
 </script>
 
