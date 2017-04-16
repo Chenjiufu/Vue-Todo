@@ -7,4 +7,6 @@ install:
     npm --version
     npm install --registry http://registry.npmjs.org
 script:
-    - npm run build
+    - npm run build    
+after_script:
+    - npm run coveralls
