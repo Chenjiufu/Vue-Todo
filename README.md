@@ -1,4 +1,4 @@
-# vue2_demo
+# vue2_demo [![Build Status](https://travis-ci.org/Chenjiufu/Vue-Todo.svg?branch=master)](https://travis-ci.org/Chenjiufu/Vue-Todo)
 
 > A Vue.js project
 
